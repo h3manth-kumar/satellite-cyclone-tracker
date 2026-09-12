@@ -1,0 +1,133 @@
+{
+  "dataset_records_evaluated": 91,
+  "regression_metrics": {
+    "MAE_kts": 6.185,
+    "RMSE_kts": 7.682,
+    "MSE_kts2": 59.008,
+    "Median_Absolute_Error_kts": 4.8,
+    "R2_Score": 0.824
+  },
+  "classification_metrics": {
+    "Accuracy_pct": 100.0,
+    "Precision_pct": 100.0,
+    "Recall_pct": 100.0,
+    "F1_Score_pct": 100.0
+  },
+  "outlier_summary": {
+    "latitude": {
+      "mean": 15.94,
+      "std": 3.58,
+      "q25": 12.8,
+      "q75": 18.8,
+      "iqr": 6.0,
+      "iqr_bounds": [
+        3.8,
+        27.8
+      ],
+      "iqr_outlier_count": 0,
+      "zscore_outlier_count": 0
+    },
+    "longitude": {
+      "mean": 79.35,
+      "std": 9.19,
+      "q25": 71.15,
+      "q75": 86.9,
+      "iqr": 15.75,
+      "iqr_bounds": [
+        47.53,
+        110.53
+      ],
+      "iqr_outlier_count": 0,
+      "zscore_outlier_count": 0
+    },
+    "wind_speed": {
+      "mean": 74.18,
+      "std": 28.95,
+      "q25": 50.0,
+      "q75": 95.0,
+      "iqr": 45.0,
+      "iqr_bounds": [
+        -17.5,
+        162.5
+      ],
+      "iqr_outlier_count": 0,
+      "zscore_outlier_count": 0
+    },
+    "pressure": {
+      "mean": 973.87,
+      "std": 20.45,
+      "q25": 961.0,
+      "q75": 991.0,
+      "iqr": 30.0,
+      "iqr_bounds": [
+        916.0,
+        1036.0
+      ],
+      "iqr_outlier_count": 0,
+      "zscore_outlier_count": 0
+    },
+    "forward_speed_kmh": {
+      "mean": 11.45,
+      "std": 4.72,
+      "q25": 8.21,
+      "q75": 14.93,
+      "iqr": 6.72,
+      "iqr_bounds": [
+        -1.86,
+        25.01
+      ],
+      "iqr_outlier_count": 0,
+      "zscore_outlier_count": 0
+    }
+  },
+  "top_variable_importance": [
+    {
+      "Feature": "wind_speed",
+      "Random_Forest_MDI_Importance": 0.37683720125152215,
+      "Permutation_Importance_Mean": 0.2228576483889202,
+      "Permutation_Importance_Std": 0.04366875963448787
+    },
+    {
+      "Feature": "pressure",
+      "Random_Forest_MDI_Importance": 0.27809637181010416,
+      "Permutation_Importance_Mean": 0.12525333239118136,
+      "Permutation_Importance_Std": 0.037713177938555886
+    },
+    {
+      "Feature": "pressure_drop_hpa",
+      "Random_Forest_MDI_Importance": 0.2541538269762835,
+      "Permutation_Importance_Mean": 0.0876311376483888,
+      "Permutation_Importance_Std": 0.034903798048593344
+    },
+    {
+      "Feature": "latitude",
+      "Random_Forest_MDI_Importance": 0.04810698577617361,
+      "Permutation_Importance_Mean": 0.10704390474844538,
+      "Permutation_Importance_Std": 0.040379732438869644
+    },
+    {
+      "Feature": "delta_lon",
+      "Random_Forest_MDI_Importance": 0.013487101748302205,
+      "Permutation_Importance_Mean": 0.0004348417184849351,
+      "Permutation_Importance_Std": 0.009205174326922513
+    },
+    {
+      "Feature": "forward_speed_kmh",
+      "Random_Forest_MDI_Importance": 0.01313971367506809,
+      "Permutation_Importance_Mean": -0.0007305652911250183,
+      "Permutation_Importance_Std": 0.013938481971118763
+    },
+    {
+      "Feature": "longitude",
+      "Random_Forest_MDI_Importance": 0.01161785017034257,
+      "Permutation_Importance_Mean": 0.01151615460712263,
+      "Permutation_Importance_Std": 0.004172608723143329
+    },
+    {
+      "Feature": "delta_lat",
+      "Random_Forest_MDI_Importance": 0.004560948592203683,
+      "Permutation_Importance_Mean": 0.00013765545505930454,
+      "Permutation_Importance_Std": 0.0026176464328609983
+    }
+  ]
+}

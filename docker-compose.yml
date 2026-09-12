@@ -1,0 +1,118 @@
+services:
+  postgres:
+    image: postgis/postgis:16-3.4-alpine
+    container_name: cyclone-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-cyclone_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-cyclone_secure_dev_password}
+      POSTGRES_DB: ${POSTGRES_DB:-cyclone_db}
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./integration/init-db:/docker-entrypoint-initdb.d
+    networks:
+      - cyclone-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./member3-platform/backend
+      dockerfile: Dockerfile
+    container_name: cyclone-backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-cyclone_admin}:${POSTGRES_PASSWORD:-cyclone_secure_dev_password}@postgres:5432/${POSTGRES_DB:-cyclone_db}
+      DATABASE_SYNC_URL: postgresql://${POSTGRES_USER:-cyclone_admin}:${POSTGRES_PASSWORD:-cyclone_secure_dev_password}@postgres:5432/${POSTGRES_DB:-cyclone_db}
+      MEMBER1_URL: http://ml-detection:8001
+      MEMBER2_URL: http://ml-prediction:8002
+      USE_MOCK_ML: ${USE_MOCK_ML:-false}
+      SATELLITE_DATA_DIR: /app/data/satellite
+      CORS_ORIGINS: "http://localhost:3000,http://127.0.0.1:3000,http://frontend:3000"
+      ENVIRONMENT: ${ENVIRONMENT:-production}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    volumes:
+      - satellite_data:/app/data/satellite
+    networks:
+      - cyclone-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  frontend:
+    build:
+      context: ./member3-platform/frontend
+      dockerfile: Dockerfile
+    container_name: cyclone-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      VITE_API_BASE_URL: http://localhost:8000
+    ports:
+      - "${FRONTEND_PORT:-3000}:3000"
+    networks:
+      - cyclone-net
+
+  ml-detection:
+    build:
+      context: ./member1-ml
+      dockerfile: Dockerfile
+    container_name: cyclone-ml-detection
+    restart: unless-stopped
+    environment:
+      - SERVICE_PORT=8001
+      - DEVICE=cpu
+      - CONFIDENCE_THRESHOLD=0.5
+      - MODEL_WEIGHTS_PATH=artifacts/models/cyclone_baseline_v1.pth
+    ports:
+      - "${ML_DETECTION_PORT:-8001}:8001"
+    volumes:
+      - satellite_data:/app/artifacts/heatmaps
+    networks:
+      - cyclone-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  ml-prediction:
+    build:
+      context: ./member2-prediction
+      dockerfile: Dockerfile
+    container_name: cyclone-ml-prediction
+    restart: unless-stopped
+    environment:
+      - PORT=8002
+      - DEVICE=cpu
+      - CHECKPOINT_PATH=/app/checkpoints/track_model_v1.pt
+    ports:
+      - "${ML_PREDICTION_PORT:-8002}:8002"
+    networks:
+      - cyclone-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8002/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+networks:
+  cyclone-net:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  satellite_data:

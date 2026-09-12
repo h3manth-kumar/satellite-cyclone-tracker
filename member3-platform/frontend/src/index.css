@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-void-black: #090b0e;
+  --color-deep-charcoal: #10141b;
+  --color-gunmetal: #181d26;
+  --color-graphite: #222936;
+  --color-steel: #303a4c;
+  --color-pewter: #424f67;
+  --color-slate: #5b6c8a;
+  --color-ash: #8899b5;
+  --color-fog: #a3b3cc;
+  --color-cloud: #d6e2f2;
+  --color-white: #ffffff;
+  --color-neon-cyan: #00f0ff;
+  --color-signal-blue: #007afc;
+  --color-map-green: #10b981;
+  --color-alert-red: #ef4444;
+  --color-warning-amber: #f59e0b;
+}
+
+/* Custom Leaflet Dark Mode Overrides */
+.leaflet-container {
+  background-color: #090b0e !important;
+  font-family: inherit;
+}
+
+.leaflet-tile {
+  filter: brightness(0.78) contrast(1.25) saturate(0.85);
+}
+
+.leaflet-popup-content-wrapper {
+  background: #10141b !important;
+  color: #ffffff !important;
+  border: 1px solid #222936 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8) !important;
+}
+
+.leaflet-popup-tip {
+  background: #10141b !important;
+}
+
+/* Storm Rotation Animation */
+@keyframes cyclone-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.cyclone-rotate {
+  animation: cyclone-spin 4s linear infinite;
+}
+
+.cyclone-spin {
+  animation: cyclone-spin 2s linear infinite;
+}
+
+.cyclone-spin-slow {
+  animation: cyclone-spin 6s linear infinite;
+}
+
+
+/* Radar Sonar Ping */
+@keyframes sonar-wave {
+  0% {
+    transform: scale(0.6);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+.sonar-ping {
+  animation: sonar-wave 2.5s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+/* Radar Sweep Line Animation */
+@keyframes radar-sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.radar-sweep-line {
+  transform-origin: center center;
+  animation: radar-sweep 4s linear infinite;
+}
+
+/* Custom Dark Glow Elements */
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+}
+
+.glow-blue {
+  box-shadow: 0 0 20px rgba(0, 122, 252, 0.35);
+}
+
+.glow-red {
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.35);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
+}
+
+@keyframes emergency-pulse {
+  0%, 100% {
+    border-color: rgba(239, 68, 68, 0.9);
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.4), inset 0 0 15px rgba(239, 68, 68, 0.2);
+  }
+  50% {
+    border-color: rgba(239, 68, 68, 0.2);
+    box-shadow: 0 0 5px rgba(239, 68, 68, 0.1), inset 0 0 0px transparent;
+  }
+}
+
+.emergency-strobe {
+  animation: emergency-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes beam-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.radar-beam {
+  transform-origin: center center;
+  animation: beam-rotate 3s linear infinite;
+}
+
+/* Custom Dark Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090b0e;
+}
+::-webkit-scrollbar-thumb {
+  background: #181d26;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #303a4c;
+}

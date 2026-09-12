@@ -1,0 +1,117 @@
+{
+  "metadata": {
+    "device": "cpu",
+    "seed": 42
+  },
+  "model_1_vision": {
+    "detection_accuracy_pct": 79.0,
+    "detection_precision_pct": 100.0,
+    "detection_recall_pct": 73.75,
+    "detection_f1_pct": 84.89,
+    "classification_accuracy_pct": 37.0,
+    "classification_macro_f1_pct": 26.02,
+    "classification_weighted_f1_pct": 24.37,
+    "localization_mean_error_km": 379.14,
+    "localization_median_error_km": 366.6,
+    "confusion_matrix": [
+      [
+        20,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        21,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        10,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        14,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        12,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0,
+        8,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        0,
+        0
+      ]
+    ]
+  },
+  "model_2_track": {
+    "track_errors_mean_km": {
+      "6h": 20.49,
+      "12h": 46.07,
+      "24h": 79.05,
+      "48h": 121.5
+    },
+    "track_errors_median_km": {
+      "6h": 20.55,
+      "12h": 44.48,
+      "24h": 81.13,
+      "48h": 103.74
+    },
+    "wind_mae_kts": 9.92,
+    "wind_rmse_kts": 13.37,
+    "pressure_mae_hpa": 6.35,
+    "pressure_rmse_hpa": 8.47
+  }
+}

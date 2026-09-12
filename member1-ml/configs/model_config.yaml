@@ -1,0 +1,18 @@
+# CycloneAI Model Hyperparameters & Architecture Configuration
+
+architecture:
+  in_channels: 3
+  stem_channels: 32
+  stage_channels: [64, 128, 256, 256]
+  feature_dim: 256
+  dropout_prob: 0.25
+
+training:
+  batch_size: 16
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  epochs: 5
+  loss_weights:
+    detection: 1.0
+    classification: 1.0
+    localization: 2.0
