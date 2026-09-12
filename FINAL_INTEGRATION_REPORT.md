@@ -75,7 +75,7 @@ All 3 member components have been harmonized, Dockerized, and integrated into a 
    - Aligned `satellite_images` schema in `01-init-postgis.sql` with SQLAlchemy model fields (`min_lat`, `min_lon`, `max_lat`, `max_lon`).
    - Resolved async relationship evaluation in `AnalysisOrchestrator` to guarantee zero unhandled exceptions on commit.
 5. **Docker Compose & Deployment Multi-Stage Optimization**:
-   - Installed PyTorch CPU wheels in both `member1-ml` and `member2-prediction` Dockerfiles using `--extra-index-url https://download.pytorch.org/whl/cpu` for lean, CPU-optimized production containers.
+   - Installed PyTorch CPU wheels in both `ml-detection` and `ml-prediction` Dockerfiles using `--extra-index-url https://download.pytorch.org/whl/cpu` for lean, CPU-optimized production containers.
    - Added robust health checks across all services.
 
 ---
@@ -86,17 +86,17 @@ All 3 member components have been harmonized, Dockerized, and integrated into a 
 
 | Test Suite | Path | Tests Run | Passed | Failed | Status |
 |---|---|---|---|---|---|
-| **Member 1 (ML Detection & Classification)** | `member1-ml/tests/` | 26 | 26 | 0 | **PASS (100%)** |
-| **Member 2 (ML Trajectory & Intensity)** | `member2-prediction/tests/` | 25 | 25 | 0 | **PASS (100%)** |
-| **Member 3 (Backend Platform & API)** | `member3-platform/backend/tests/` | 9 | 9 | 0 | **PASS (100%)** |
-| **End-to-End Live Stack Integration** | `integration/tests/test_e2e_pipeline.py` | 7 | 7 | 0 | **PASS (100%)** |
+| **ML Detection & Classification** | `ml-detection/tests/` | 26 | 26 | 0 | **PASS (100%)** |
+| **ML Trajectory & Intensity** | `ml-prediction/tests/` | 25 | 25 | 0 | **PASS (100%)** |
+| **Backend Platform & API** | `platform/backend/tests/` | 9 | 9 | 0 | **PASS (100%)** |
+| **End-to-End Live Stack Integration** | `infra/tests/test_e2e_pipeline.py` | 7 | 7 | 0 | **PASS (100%)** |
 | **Total Test Count** | **Entire CycloneAI Stack** | **67** | **67** | **0** | **PASS (100%)** |
 
 ---
 
 ## 5. Live E2E Integration Pipeline Verification Evidence
 
-The full end-to-end integration test runner (`integration/tests/test_e2e_pipeline.py`) was executed against the live 5-container cluster.
+The full end-to-end integration test runner (`infra/tests/test_e2e_pipeline.py`) was executed against the live 5-container cluster.
 
 ```
 ======================================================================

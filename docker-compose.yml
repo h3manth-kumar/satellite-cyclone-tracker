@@ -11,7 +11,7 @@ services:
       - "${POSTGRES_PORT:-5433}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./integration/init-db:/docker-entrypoint-initdb.d
+      - ./infra/init-db:/docker-entrypoint-initdb.d
     networks:
       - cyclone-net
     healthcheck:
@@ -22,7 +22,7 @@ services:
 
   backend:
     build:
-      context: ./member3-platform/backend
+      context: ./platform/backend
       dockerfile: Dockerfile
     container_name: cyclone-backend
     restart: unless-stopped
@@ -53,7 +53,7 @@ services:
 
   frontend:
     build:
-      context: ./member3-platform/frontend
+      context: ./platform/frontend
       dockerfile: Dockerfile
     container_name: cyclone-frontend
     restart: unless-stopped
@@ -68,7 +68,7 @@ services:
 
   ml-detection:
     build:
-      context: ./member1-ml
+      context: ./ml-detection
       dockerfile: Dockerfile
     container_name: cyclone-ml-detection
     restart: unless-stopped
@@ -91,7 +91,7 @@ services:
 
   ml-prediction:
     build:
-      context: ./member2-prediction
+      context: ./ml-prediction
       dockerfile: Dockerfile
     container_name: cyclone-ml-prediction
     restart: unless-stopped

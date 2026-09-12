@@ -66,13 +66,14 @@ dist-ssr/
 .env.production.local
 *.pem
 *.key
-!integration/.env.example
+!infra/.env.example
+!.env.example
 
 # Databases & Runtime Data
 *.sqlite
 *.sqlite3
 *.db
-member3-platform/backend/test_cyclone.db
+platform/backend/test_cyclone.db
 
 # IDE & Editor Files
 .vscode/
@@ -96,7 +97,7 @@ Thumbs.db
 [Dd]esktop.ini
 
 # Transient Runtime Uploads / Heatmaps
-member3-platform/backend/data/satellite/*
-!member3-platform/backend/data/satellite/.gitkeep
-member1-ml/artifacts/heatmaps/*
-!member1-ml/artifacts/heatmaps/.gitkeep
+platform/backend/data/satellite/*
+!platform/backend/data/satellite/.gitkeep
+ml-detection/artifacts/heatmaps/*
+!ml-detection/artifacts/heatmaps/.gitkeep

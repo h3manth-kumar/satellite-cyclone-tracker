@@ -116,30 +116,33 @@ CycloneAI/
 │   ├── benchmark_eval.py
 │   ├── cycloneai_benchmark_colab.ipynb
 │   └── README.md
-├── docs/                        # Architecture specs, PRD, TRD, MAP design & presentation
+├── docs/                        # Architecture specs, PRD, TRD, & MAP design
 │   ├── MAP_DESIGN.md
 │   ├── PRD.md
 │   ├── SCHEMA.md
-│   ├── TRD.md
-│   └── presentation/            # SIH presentation slides (.pptx)
-├── integration/                 # Integration tests, database seeds & environment templates
+│   └── TRD.md
+├── infra/                       # Infrastructure, orchestration, tests & DB init scripts
 │   ├── init-db/                 # PostGIS spatial initialization SQL scripts
 │   └── tests/                   # End-to-end multi-service test suites
-├── member1-ml/                  # ML Subsystem: Eye Detection, Classification & Grad-CAM
+├── ml-detection/                # ML Subsystem: Eye Detection, Classification & Grad-CAM
 │   ├── artifacts/               # Model weights & generated heatmaps
 │   ├── src/                     # PyTorch CNN models, pipelines & FastAPI server
 │   └── Dockerfile
-├── member2-prediction/          # ML Subsystem: GRU Track & Intensity Forecasting
+├── ml-prediction/               # ML Subsystem: GRU Track & Intensity Forecasting
 │   ├── checkpoints/             # Trained GRU weights
 │   ├── api/                     # Microservice endpoints & schemas
 │   ├── models/                  # GRU architecture & Monte Carlo Dropout
 │   └── Dockerfile
-├── member3-platform/            # Platform Subsystem: Backend Gateway & Frontend Dashboard
+├── platform/                    # Web Platform Subsystem: Backend Gateway & Frontend GIS
 │   ├── backend/                 # FastAPI API Gateway, PostGIS models, Alembic migrations
 │   └── frontend/                # React 18, Vite, Leaflet, Tailwind CSS dashboard
+├── .env.example                 # Environment configuration template
+├── .gitattributes               # Cross-platform line endings & binary attributes
+├── .gitignore                   # Standard ignore file
 ├── docker-compose.yml           # Multi-container 5-service orchestration definition
 ├── FINAL_INTEGRATION_REPORT.md  # Comprehensive integration verification evidence
 ├── INTEGRATION_AUDIT.md         # Architecture harmonization audit log
+├── LICENSE                      # MIT License
 └── README.md
 ```
 
@@ -151,7 +154,7 @@ The test suite covers unit tests, ML inference verification, schema validations,
 
 ```bash
 # Run End-to-End Live Stack Integration Tests
-pytest integration/tests/test_e2e_pipeline.py -v
+pytest infra/tests/test_e2e_pipeline.py -v
 ```
 
 ---
@@ -168,10 +171,13 @@ pytest integration/tests/test_e2e_pipeline.py -v
 
 ---
 
-## 👥 Authors & Acknowledgments
+## 👥 Authors & Team
 
-* **Smart India Hackathon 2026 Team**
-* **Inspiration & Ground Truth References:** India Meteorological Department (IMD) & Joint Typhoon Warning Center (JTWC).
+* **Hemanth Kumar**
+* **Navneeth Reddy**
+* **Meghana**
+
+**Inspiration & Ground Truth References:** India Meteorological Department (IMD) & Joint Typhoon Warning Center (JTWC).
 
 ---
 
